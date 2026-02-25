@@ -1,0 +1,41 @@
+#primero {
+    border-radius: 5px;
+    background: linear-gradient(to top, red, yellow); /* Degradado de rojo a amarillo. */
+    width: 200px;
+    height: 100px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8); /* Sombra para dar profundidad. */
+    opacity: 1;
+    color: black;
+    font-size: 1em;
+}
+
+.classic {
+  background-color: green;
+  color: white;
+}
+
+.back {
+  background-color: orange;
+  color: white;
+}
+
+button:hover {
+  background: red;
+  color: white;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+button::before {
+  content: "⮞ ";
+  color: red;
+}
+
+body {
+    font-size: 16px;
+}
+
+p {
+    background-color: lightgray;
+    font-size: 1.2em;
+}
