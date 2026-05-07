@@ -1,0 +1,1 @@
+console.log('hola desde script en archivo externo');
