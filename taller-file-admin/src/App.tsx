@@ -17,7 +17,12 @@ const LoadingSpinner = () => (
 );
 
 // Panel de Control (Dashboard)
-const Dashboard = ({ user, onSignOut }) => {
+interface DashboardProps {
+  user: { id: string; email: string };
+  onSignOut: () => void;
+}
+
+const Dashboard = ({ user, onSignOut }: DashboardProps) => {
   return (
     <div className="min-h-screen bg-slate-100 p-8">
       <header className="flex justify-between items-center p-4 bg-white rounded-xl shadow-lg mb-8">
@@ -53,7 +58,7 @@ const Dashboard = ({ user, onSignOut }) => {
 
 // --- Componente Principal ---
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<{ id: string; email: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Chequeo de autenticación al inicio
@@ -61,7 +66,8 @@ export default function App() {
     
     const checkAuth = async () => {
       // Obtener la sesión o el token del localStorage/Cookies.
-      const storedUser = JSON.parse(localStorage.getItem('user_session'));
+      const raw = localStorage.getItem('user_session');
+      const storedUser = raw ? JSON.parse(raw) : null;
       
       if (storedUser) {
         setUser(storedUser.user);
@@ -74,7 +80,7 @@ export default function App() {
   }, []);
 
   // Función para el inicio de sesión
-  const handleSignIn = (userData) => {
+  const handleSignIn = (userData: { user: { id: string; email: string } }) => {
     localStorage.setItem('user_session', JSON.stringify(userData));
     setUser(userData.user);
   };

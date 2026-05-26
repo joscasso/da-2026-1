@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import { supabase } from '../supabaseClient';
 
-export default function AuthForm({ onSignIn }) {
+export default function AuthForm({ onSignIn }: { onSignIn: (session: any) => void }) {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleAuth = async (isSignUp: boolean) => {
     setLoading(true);
-    let error = null;
+    let error: any;
 
     if (isSignUp) {
       // Registrar nuevo usuario (Sign Up)
